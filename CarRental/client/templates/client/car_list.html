@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Rental - Available Cars</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="Car Rental Logo">
+                <h1>SuperWheels Rentals</h1>
+            </div>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'car_list' %}" class="active">Cars</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Available Cars</h2>
+        <div class="car-grid">
+            {% for car in cars %}
+            <div class="car-card">
+                <img src="{{ car.image.url }}" alt="{{ car.make }} {{ car.model }}">
+                <h3>{{ car.make }} {{ car.model }}</h3>
+                <p class="year">{{ car.year }}</p>
+                <p class="price">${{ car.price_per_day }} / day</p>
+                <ul class="features">
+                    <li><i class="fas fa-user"></i> {{ car.seats }} seats</li>
+                    <li><i class="fas fa-gas-pump"></i> {{ car.fuel_type }}</li>
+                    <li><i class="fas fa-cog"></i> {{ car.transmission }}</li>
+                </ul>
+                <a href="{% url 'car_detail' car.id %}" class="btn-rent">Rent Now</a>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 SuperWheels Rentals. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/animations.js' %}"></script>
+</body>
+</html>
+
