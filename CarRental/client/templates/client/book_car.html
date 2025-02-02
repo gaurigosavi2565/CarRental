@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoVoyage - Book {{ car.name }}</title>
+    <!-- Load CSS -->
+    <link rel="stylesheet" href="{% static 'client/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Book {{ car.name }} {{ car.model }}</h1>
+    <div class="booking-form">
+        <form method="post">
+            {% csrf_token %}
+            <label for="client_name">Your Name:</label>
+            <input type="text" id="client_name" name="client_name" required>
+            <label for="booking_start_date">Start Date:</label>
+            <input type="date" id="booking_start_date" name="booking_start_date" required>
+            <label for="booking_end_date">End Date:</label>
+            <input type="date" id="booking_end_date" name="booking_end_date" required>
+            <button type="submit">Book Now</button>
+        </form>
+    </div>
+
+    <!-- Link the JavaScript file -->
+    <script src="{% static 'client/script.js' %}"></script>
+</body>
+</html>
